@@ -55,27 +55,68 @@ public class BST<E> extends AbstractBST<E> implements BSTInterface<E> {
                 predecessor(locatePosition).setRightNode(newNode); //take the dublicate data the right node of the predecessor of the locatePostion node
             }
         }
-        this.setSize(this.getSize()+1);
+        this.setSize(this.getSize()+1);//increase size of data by 1
         
     }
 
     @Override
     public boolean contains(E value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        NodeTree checkNode= new NodeTree(value);
+        NodeTree locatePosition= locate(this.root,value);
+        if (locatePosition.compareTo(checkNode)==0) //if that locate postion data equals to the value mean value already in the tree
+        {
+            return true; //return true
+        }
+        return false; //else return false
     }
 
-    @Override
-    public E remove(E data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override //remove the top node or the root, return new root which has no parent
+    public NodeTree<E> removeTop() {
+        NodeTree<E> newRoot= null;
+        NodeTree<E> leftNode= root.getLeftNode();
+        NodeTree<E> rightNode= root.getRightNode();
+        if ((leftNode==null)&&(rightNode==null))
+        {
+            root=null;
+        }
+        else if (leftNode==null)
+        {
+            rightNode.setParent(null);// set parent of rightNode is null
+            root= rightNode; //new root is rightNode
+        }
+        else if (rightNode==null)
+        {
+            leftNode.setParent(null);// set parent of rightNode is null
+            root= leftNode;// new root is leftNode
+        }
+        else
+        {
+            NodeTree <E> predessor = predecessor(root);//this will be new root
+            //System.out.println(root.getData());
+            if (predessor!= root.getLeftNode()) //if predessor is different to the left node of the root
+            {
+                predessor.setLeftNode(root.getLeftNode()); //set the leftNode of of predessor as the leftnode of the root
+                predessor.getParent().setRightNode(null); //parent of predessor get disconnected with it
+            }
+            
+            predessor.setRightNode(root.getRightNode()); //set the leftNode of of predessor as the rightNode of the root
+            root= predessor;// set it as new root
+            root.setParent(null);//disconnect from parent
+        }
+       return root;
     }
 
     @Override
     public int treeHeight() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
-    public void inOrderTraverse(NodeTree root) {
+    public void traverse() {
+        inOrderTraverse(this.root);
+    }
+    
+    private void inOrderTraverse(NodeTree root) {
         if (root==null)
         {
             return;
@@ -88,33 +129,6 @@ public class BST<E> extends AbstractBST<E> implements BSTInterface<E> {
         }
     }
 
-    @Override
-    public void postOrderTraverse(NodeTree root) {
-        if (root==null)
-        {
-            return;
-        }
-        else
-        {
-            postOrderTraverse(root.getLeftNode());
-            postOrderTraverse(root.getRightNode());
-            System.out.println(root.getData());
-        }
-    }
-
-    @Override
-    public void preOrderTraverse(NodeTree root) {
-        if (root==null)
-        {
-            return;
-        }
-        else
-        {
-            System.out.println(root.getData());
-            preOrderTraverse(root.getLeftNode());
-            preOrderTraverse(root.getRightNode());
-        }
-    }
     
     //getter and setter
     public NodeTree getRoot() {
@@ -126,7 +140,7 @@ public class BST<E> extends AbstractBST<E> implements BSTInterface<E> {
     }
 
     @Override //this function cant return null
-    public NodeTree locate(NodeTree root, E value) {
+    public NodeTree<E> locate(NodeTree<E> root, E value) {
         if (root.getData()==value) // if root data equal value then it is done
         {
             return root;
@@ -162,5 +176,7 @@ public class BST<E> extends AbstractBST<E> implements BSTInterface<E> {
         }
         return result;
     }
+
+
 
 }

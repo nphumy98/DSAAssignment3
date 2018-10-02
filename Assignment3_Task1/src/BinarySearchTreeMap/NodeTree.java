@@ -61,7 +61,10 @@ public class NodeTree<E> {
 
     public void setLeftNode(NodeTree leftNode) {
         this.leftNode = leftNode;
-        leftNode.setParent(this); //set parent of leftnode is this parent
+        if (leftNode!=null)
+        {
+            leftNode.setParent(this); //set parent of leftnode is this parent
+        }
     }
 
     public NodeTree getRightNode() {
@@ -70,7 +73,10 @@ public class NodeTree<E> {
 
     public void setRightNode(NodeTree rightNode) {
         this.rightNode = rightNode;
-        rightNode.setParent(this); //set parent of rightNode is this parent
+        if (rightNode!=null)
+        {
+            rightNode.setParent(this); //set parent of rightNode is this parent
+        }   
     }
     
 }
