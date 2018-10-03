@@ -107,8 +107,24 @@ public class BST<E> extends AbstractBST<E> implements BSTInterface<E> {
     }
 
     @Override
-    public int treeHeight() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int treeHeight(NodeTree<E> root) {
+        if (root==null)
+        {
+            return -1;
+        }
+        else
+        {
+            int treeHeightLeft= treeHeight(root.getLeftNode());
+            int treeHeighRight= treeHeight(root.getRightNode());
+            if (treeHeightLeft>treeHeighRight)
+            {
+                return treeHeightLeft+1;
+            }
+            else
+            {
+                return treeHeighRight+1;
+            }
+        }
     }
     
     @Override

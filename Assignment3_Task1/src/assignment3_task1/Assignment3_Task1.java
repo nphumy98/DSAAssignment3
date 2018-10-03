@@ -53,19 +53,15 @@ public class Assignment3_Task1 {
         NodeTree root3= new NodeTree(500);
         BST tree2 = new BST(root3);
         tree2.add(600);
+       tree2.add(700);
+        tree2.add(880);
+ //       tree2.add(550);
+//        tree2.add(540);
         tree2.add(400);
         tree2.add(300);
         tree2.add(450);
         tree2.traverse();
-        tree2.removeTop();
-        System.out.println("====================");
-        tree2.traverse();
-        tree2.removeTop();
-        System.out.println("====================");
-        tree2.traverse();
-        tree2.removeTop();
-        System.out.println("====================");
-        tree2.traverse();
+        System.out.println(tree2.treeHeight(tree2.getRoot()));
         
     }
     

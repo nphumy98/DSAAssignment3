@@ -18,6 +18,6 @@ public interface BSTInterface<E> {
     public int treeSize();
     public boolean isEmpty();
     public boolean contains(E value);
-    public int treeHeight();
+    public int treeHeight(NodeTree<E> root);
     public void traverse();
 }
