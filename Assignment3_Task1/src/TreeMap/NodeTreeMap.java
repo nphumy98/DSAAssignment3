@@ -5,8 +5,8 @@
  */
 package TreeMap;
 
-import BinarySearchTree.BST;
-import BinarySearchTree.NodeTree;
+import BSTNormal.BST;
+import BSTNormal.NodeTree;
 
 /**
  *

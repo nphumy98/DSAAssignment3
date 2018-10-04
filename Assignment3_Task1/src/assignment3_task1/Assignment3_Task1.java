@@ -5,8 +5,8 @@
  */
 package assignment3_task1;
 
-import BinarySearchTree.BST;
-import BinarySearchTree.NodeTree;
+import BSTNormal.BST;
+import BSTNormal.NodeTree;
 import TreeMap.NodeTreeMap;
 import TreeMap.TreeMapSet;
 import java.util.HashMap;

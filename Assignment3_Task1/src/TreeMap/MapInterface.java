@@ -5,7 +5,7 @@
  */
 package TreeMap;
 
-import BinarySearchTree.BST;
+import BSTNormal.BST;
 
 /**
  *
