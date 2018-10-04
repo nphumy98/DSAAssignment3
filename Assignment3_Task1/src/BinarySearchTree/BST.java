@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BinarySearchTreeMap;
+package BinarySearchTree;
 
 /**
  *
  * @author jimmynguyen
  */
-public class BST<E> extends AbstractBST<E> implements BSTInterface<E> {
+public class BST<E> extends AbstractBST<E> implements BSTInterface<E>{
 
     private NodeTree root;
     
@@ -192,7 +192,4 @@ public class BST<E> extends AbstractBST<E> implements BSTInterface<E> {
         }
         return result;
     }
-
-
-
 }

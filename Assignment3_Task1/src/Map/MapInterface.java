@@ -20,5 +20,5 @@ public interface MapInterface<K,V> {
     public boolean containsValue(V value);
     public Set<K> keySet(); //return all set
     public ArrayList<V> values(); //return value range
-    public Set<Association<K,V>> entrySet(); //return set of association (entrySet) 
+    public Set<NodeTreeMap<K,V>> entrySet(); //return set of association (entrySet) 
 }

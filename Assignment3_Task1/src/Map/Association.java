@@ -13,15 +13,20 @@ public class Association<K,V> {
     private K key;
     private V value;
     
-    //constructor
     public Association(K key, V value)
     {
         this.key=key;
         this.value=value;
     }
     
+    //compareTo
+    public int compareTo(Association anotherAssociation)
+    {
+        int valueThis= (int) this.key;
+        int valueThat= (int) anotherAssociation.getKey();
+        return (valueThis-valueThat);
+    }
     //getter and setter
-
     public K getKey() {
         return key;
     }

@@ -5,8 +5,8 @@
  */
 package assignment3_task1;
 
-import BinarySearchTreeMap.BST;
-import BinarySearchTreeMap.NodeTree;
+import BinarySearchTree.BST;
+import BinarySearchTree.NodeTree;
 
 
 

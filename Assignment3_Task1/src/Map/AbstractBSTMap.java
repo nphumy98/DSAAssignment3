@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BinarySearchTreeMap;
+package Map;
 
 /**
  *
  * @author jimmynguyen
  */
-public abstract class AbstractBST<E> implements BSTInterface<E> {
+public abstract class AbstractBSTMap<K,V> implements BSTMapInterface<K,V> {
     private int size;// number of element in the tree
     
     @Override
@@ -38,5 +38,4 @@ public abstract class AbstractBST<E> implements BSTInterface<E> {
     public void setSize(int size) {
         this.size = size;
     }
-    
 }
