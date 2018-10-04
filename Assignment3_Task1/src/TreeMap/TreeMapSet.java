@@ -121,7 +121,7 @@ public class TreeMapSet<K,V> extends AbstractBSTMap<K,V> implements BSTMapInterf
         }
     }
 
-    @Override
+    @Override //note that iftree only has root, height will be 0
     public int treeHeight(NodeTreeMap<K, V> root) {
         if (root==null)
         {
@@ -213,6 +213,12 @@ public class TreeMapSet<K,V> extends AbstractBSTMap<K,V> implements BSTMapInterf
     public TreeMapSet<K,V> entrySet() {
         return this;
     }
+    
+    //getter root
 
+    public NodeTreeMap<K, V> getRoot() {
+        return root;
+    }
+    
 
 }
