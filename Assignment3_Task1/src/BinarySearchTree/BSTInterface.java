@@ -10,7 +10,7 @@ package BinarySearchTree;
  * @author jimmynguyen
  */
 public interface BSTInterface<E> {
-    public void add(E value);
+    public void add(E value, boolean allowDuplicate);
     public NodeTree<E> removeTop(); //remove the top node or the root, return new root which has no parent
     public NodeTree<E> locate(NodeTree<E> root, E value); //this function cant return null
     //we store dublicate value on left tree

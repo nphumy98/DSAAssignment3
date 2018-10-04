@@ -6,12 +6,12 @@
 package BinarySearchTree;
 
 /**
- *
+ *This BST may accept dublicate value to be added
  * @author jimmynguyen
  */
 public class BST<E> extends AbstractBST<E> implements BSTInterface<E>{
 
-    private NodeTree root;
+    private NodeTree<E> root;
     
     //constructor
     public BST()
@@ -20,7 +20,7 @@ public class BST<E> extends AbstractBST<E> implements BSTInterface<E>{
         this.root=null; //set root is null;
     }
     
-    public BST(NodeTree root)
+    public BST(NodeTree<E> root)
     {
         new BST();
         if (root!=null)// if root !=null
@@ -31,7 +31,7 @@ public class BST<E> extends AbstractBST<E> implements BSTInterface<E>{
     }
     
     @Override
-    public void add(E value) {
+    public void add(E value, boolean allowDuplicate) {
         //find the appropriate position
         NodeTree newNode= new NodeTree(value);
         if (this.root==null) // if the tree is empty
@@ -52,11 +52,17 @@ public class BST<E> extends AbstractBST<E> implements BSTInterface<E>{
             }
             else // if locatePosition.compareTo(new NodeTree(value))==0 -> dublicate data
             {
-                predecessor(locatePosition).setRightNode(newNode); //take the dublicate data the right node of the predecessor of the locatePostion node
+                if (allowDuplicate==true) //duplicate value is allowed
+                {
+                    predecessor(locatePosition).setRightNode(newNode); //take the dublicate data the right node of the predecessor of the locatePostion node
+                }
+                else
+                {
+                    //do nothing
+                }
             }
         }
         this.setSize(this.getSize()+1);//increase size of data by 1
-        
     }
 
     @Override
@@ -186,10 +192,17 @@ public class BST<E> extends AbstractBST<E> implements BSTInterface<E>{
     public NodeTree predecessor(NodeTree root) {
         NodeTree result= root.getLeftNode(); //get left Node of the root
          //start searching on right branch of the left child node of the root
-        while (result.getRightNode()!=null)
+        if (result!=null)
         {
-            result= result.getRightNode();
+            while (result.getRightNode()!=null)
+            {
+                result= result.getRightNode();
+            }
+            return result;
         }
-        return result;
+        else // if tree does not have leftNode
+        {
+            return root;
+        }
     }
 }

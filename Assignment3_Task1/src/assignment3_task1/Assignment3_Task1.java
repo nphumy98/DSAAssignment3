@@ -7,6 +7,10 @@ package assignment3_task1;
 
 import BinarySearchTree.BST;
 import BinarySearchTree.NodeTree;
+import TreeMap.NodeTreeMap;
+import TreeMap.TreeMapSet;
+import java.util.HashMap;
+import java.util.TreeMap;
 
 
 
@@ -21,48 +25,44 @@ public class Assignment3_Task1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        int a1=50;
-        int a2=45;
-        NodeTree root = new NodeTree(50);
-        NodeTree root2= new NodeTree(a2);
-        
-        System.out.println(root.compareTo(root2));
-        BST tree = new BST(root);
-        tree.add(45);
-        tree.add(60);
-        tree.add(16);
-        tree.add(48);
-        tree.add(55);
-        tree.add(72);
-        tree.add(50);
-        tree.traverse();
-        System.out.println(tree.getSize());
-        System.out.println("====================");
-        System.out.println(tree.contains(16));
-        System.out.println(tree.contains(45));
-        System.out.println(tree.contains(48));
-        System.out.println(tree.contains(50));
-        System.out.println(tree.contains(55));
-        System.out.println(tree.contains(60));
-        System.out.println(tree.contains(72));
-        System.out.println("====================");
-        System.out.println(tree.contains(80));
-        System.out.println(tree.contains(10));
-        System.out.println(tree.contains(20));
-        System.out.println("====================");
-        NodeTree root3= new NodeTree(500);
-        BST tree2 = new BST(root3);
-        tree2.add(600);
-       tree2.add(700);
-        tree2.add(880);
- //       tree2.add(550);
-//        tree2.add(540);
-        tree2.add(400);
-        tree2.add(300);
-        tree2.add(450);
-        tree2.traverse();
-        System.out.println(tree2.treeHeight(tree2.getRoot()));
-        
+        NodeTreeMap root= new NodeTreeMap(20,30);
+        NodeTreeMap aNode= new NodeTreeMap(30,30);
+        NodeTreeMap aNode2= new NodeTreeMap(40,20);
+        NodeTreeMap aNode3= new NodeTreeMap(50,30);
+        NodeTreeMap aNode4= new NodeTreeMap(60,75);
+        NodeTreeMap aNode5= new NodeTreeMap(20,80);
+        NodeTreeMap aNode6= new NodeTreeMap(90,30);
+        NodeTreeMap aNode7= new NodeTreeMap(95,30);
+        TreeMapSet aTreeMap= new TreeMapSet(root);
+        aTreeMap.add(aNode);
+        aTreeMap.add(aNode2);
+        aTreeMap.add(aNode3);
+        aTreeMap.add(aNode4);
+        aTreeMap.add(aNode5);
+        aTreeMap.add(aNode6);
+        aTreeMap.add(aNode7);
+        aTreeMap.traverse();
+        System.out.println("====");
+        aTreeMap.keySet().traverse();
+        System.out.println("====");
+        aTreeMap.values().traverse();
+//TreeMap<Integer, String> hash_map = new TreeMap<Integer, String>(); 
+//  
+//        // Mapping string values to int keys 
+//        hash_map.put(10, "Geeks");
+//        hash_map.put(10, "Geek"); 
+//        hash_map.put(15, "4"); 
+//        hash_map.put(20, "haha"); 
+//        hash_map.put(25, "Welcomes"); 
+//        hash_map.put(30, "You"); 
+//        String a=hash_map.put(10,"hehe");
+//        // Displaying the HashMap 
+//        System.out.println("Initial Mappings are: " + hash_map); 
+//        System.out.println(a);
+//        // Using values() to get the set view of values 
+//        System.out.println("The collection is: " + hash_map.values()); 
+
     }
+    
     
 }

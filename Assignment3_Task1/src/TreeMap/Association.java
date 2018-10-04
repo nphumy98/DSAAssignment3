@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Map;
+package TreeMap;
 
 /**
  *
@@ -26,6 +26,9 @@ public class Association<K,V> {
         int valueThat= (int) anotherAssociation.getKey();
         return (valueThis-valueThat);
     }
+    
+    //toString
+    
     //getter and setter
     public K getKey() {
         return key;
