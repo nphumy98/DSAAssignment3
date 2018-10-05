@@ -41,7 +41,32 @@ public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements 
         }
         this.setSize(this.getSize()+1);// increment size to 1
     }
-
+    
+    @Override
+    public Node<E> remove(int index) {
+        Node<E> removeNode= null;
+        if (index>this.getSize()-1)
+        {
+            System.out.println("The index exceed the size. cant get this index");
+        }
+        else
+        {
+            if (index==0)//mean remove head
+            {
+                removeNode=this.head;
+                this.head=head.getNextNode();
+            }
+            else
+            {
+                Node<E >previousRemoveNode=this.get(index-1);// get the previous node
+                removeNode= this.get(index);// get the removeNode
+                previousRemoveNode.setNextNode(removeNode.getNextNode()); //link previous node to next node of remove node
+            }
+            this.setSize(this.getSize()-1); //decrement size by 1
+        }
+        return removeNode;
+    }
+    
     @Override//index from 0
     public Node<E> get(int index) {
         if (index>this.getSize()-1)
@@ -94,5 +119,22 @@ public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements 
 
     public void setTail(Node<E> tail) {
         this.tail = tail;
+    }
+
+    
+
+    @Override
+    public boolean contain(E value) {
+        if (!this.isEmpty())
+        {
+            for(int i=0;i<this.getSize();i++)
+            {
+                if (this.get(i).getData().equals(value)) //if find value;
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

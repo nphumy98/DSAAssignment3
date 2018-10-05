@@ -3,22 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SingleLinkedList;
+package HashMap;
 
 /**
  *
  * @author jimmynguyen
  */
-public abstract class AbstractSingleLinkedList<E> implements SingleLinkedListInterface<E> {
+public abstract class AbstractHashMap<K,V> implements MapInterface<K,V> {
     private int size;
+    private int capacity;//this is the number of bucket
+    
     public int size()
     {
         return size;
     }
     
-    public boolean isEmpty()
+    public int capacity()
     {
-        return (size<=0);
+        return capacity;
     }
     
     //getter and setter
@@ -29,4 +31,13 @@ public abstract class AbstractSingleLinkedList<E> implements SingleLinkedListInt
     public void setSize(int size) {
         this.size = size;
     }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+    
 }

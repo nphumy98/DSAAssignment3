@@ -22,13 +22,19 @@ public class Assignment3_Task2 {
         aList.traverse();
         System.out.println(aList.getSize());
         System.out.println(aList.get(0));
-        aList.add("hee");
-        aList.add("haha");
+        aList.add("hehe");
         aList.add("hoho");
+        aList.add("haha");aList.add("hihi");
+        
         System.out.println("===");
         aList.traverse();
         System.out.println(aList.getSize());
-        System.out.println(aList.get(1).getData());
+        System.out.println("===");
+        System.out.println(aList.contain("hehe"));
+        System.out.println(aList.contain("hoho"));
+        System.out.println(aList.contain("haha"));
+        System.out.println(aList.contain("hihi"));
+        System.out.println(aList.contain("huhu"));
 
         
     }
