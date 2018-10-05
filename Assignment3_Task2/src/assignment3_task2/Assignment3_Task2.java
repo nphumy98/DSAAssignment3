@@ -5,6 +5,8 @@
  */
 package assignment3_task2;
 
+import SingleLinkedList.SingleLinkedList;
+
 /**
  *
  * @author jimmynguyen
@@ -16,6 +18,19 @@ public class Assignment3_Task2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        SingleLinkedList<String> aList= new SingleLinkedList<String>();
+        aList.traverse();
+        System.out.println(aList.getSize());
+        System.out.println(aList.get(0));
+        aList.add("hee");
+        aList.add("haha");
+        aList.add("hoho");
+        System.out.println("===");
+        aList.traverse();
+        System.out.println(aList.getSize());
+        System.out.println(aList.get(1).getData());
+
+        
     }
     
 }
