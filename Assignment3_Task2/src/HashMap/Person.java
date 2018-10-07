@@ -11,9 +11,16 @@ package HashMap;
  */
 public class Person {
     private String name;
-    private long phoneNumber;
+    private String phoneNumber;
     private int age;
     
+    
+    public Person(String name,String phoneNumber, int age)
+    {
+        this.name=name;
+        this.phoneNumber=phoneNumber;
+        this.age=age;
+    }
     //getter and setter
     public String getName() {
         return name;
@@ -23,11 +30,11 @@ public class Person {
         this.name = name;
     }
 
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -39,5 +46,16 @@ public class Person {
         this.age = age;
     }
     
+    public long generateHashCode() //provide hash code (or Key)
+    {
+        char[] nameCharacter= this.name.toCharArray();
+        long hashKey=0;
+        for(int i=0;i<nameCharacter.length;i++)
+        {
+            int value= nameCharacter[i];
+            hashKey+=value;
+        }
+        return hashKey;
+    }
     
 }

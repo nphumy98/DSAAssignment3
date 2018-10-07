@@ -9,7 +9,7 @@ package HashMap;
  *
  * @author jimmynguyen
  */
-public abstract class AbstractHashMap<K,V> implements MapInterface<K,V> {
+public abstract class AbstractHashMap<E> {
     private int size;
     private int capacity;//this is the number of bucket
     

@@ -5,6 +5,7 @@
  */
 package assignment3_task2;
 
+import HashMap.Person;
 import SingleLinkedList.SingleLinkedList;
 
 /**
@@ -18,6 +19,8 @@ public class Assignment3_Task2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+//          Person aPerson= new Person("ab","0212345",12);
+//          System.out.println(aPerson.generateHashCode());
         SingleLinkedList<String> aList= new SingleLinkedList<String>();
         aList.traverse();
         System.out.println(aList.getSize());
@@ -35,6 +38,10 @@ public class Assignment3_Task2 {
         System.out.println(aList.contain("haha"));
         System.out.println(aList.contain("hihi"));
         System.out.println(aList.contain("huhu"));
+        System.out.println(aList.indexOf("hehe"));
+        System.out.println(aList.indexOf("hoho"));
+        //System.out.println(aList.indexOf("haha"));
+        System.out.println(aList.indexOf("hihi"));
 
         
     }

@@ -43,7 +43,7 @@ public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements 
     }
     
     @Override
-    public Node<E> remove(int index) {
+    public E remove(int index) {
         Node<E> removeNode= null;
         if (index>this.getSize()-1)
         {
@@ -64,7 +64,7 @@ public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements 
             }
             this.setSize(this.getSize()-1); //decrement size by 1
         }
-        return removeNode;
+        return removeNode.getData();
     }
     
     @Override//index from 0
@@ -136,5 +136,24 @@ public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements 
             }
         }
         return false;
+    }
+
+    @Override
+    public int indexOf(E value) {
+        Node<E> currentNode= this.head;
+        
+         if (currentNode.getData().equals(value))// if head is the data
+        {
+            return 0;
+        }
+        for(int i=1;i<this.getSize();i++)
+        {
+            currentNode= currentNode.getNextNode();
+            if (currentNode.getData().equals(value))
+            {
+                return i;
+            }           
+        }
+        return -1;
     }
 }
