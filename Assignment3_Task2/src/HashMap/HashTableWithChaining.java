@@ -15,9 +15,11 @@ import SingleLinkedList.SingleLinkedList;
 public class HashTableWithChaining<E> extends AbstractHashMap<E> {
     private SingleLinkedList<E>[] bucketArray;
     
-    public HashTableWithChaining()
+    public HashTableWithChaining(int initialCapacity)
     {
-        bucketArray= new SingleLinkedList[this.getCapacity()];
+        bucketArray= new SingleLinkedList[initialCapacity];
+        this.setCapacity(initialCapacity);
+        this.setSize(0);
         //set all to null
         for(int i=0;i<bucketArray.length;i++)
         {
@@ -47,6 +49,26 @@ public class HashTableWithChaining<E> extends AbstractHashMap<E> {
             
         }
         this.setSize(this.getSize()+1);//increase the size of the Hash Table
+        
+        if (1.0d*this.getSize()/this.getCapacity()>=0.75) // check if it exceed load factor
+        {
+            SingleLinkedList<E> listElement= this.getAllElement(); //save all the elements to a list
+            int newCapacity= this.getCapacity()*2;// double capacity
+            //set the new array and attribute
+            bucketArray= new SingleLinkedList[newCapacity];
+            this.setCapacity(newCapacity);
+            this.setSize(0);
+            //set all to null
+            for(int i=0;i<bucketArray.length;i++)
+            {
+                bucketArray[i]=null;
+            }
+            //add back all element
+            for(int i=0;i<listElement.getSize();i++)
+            {
+                this.add(listElement.get(i).getData());
+            }
+        }
 
     }
     
@@ -54,40 +76,41 @@ public class HashTableWithChaining<E> extends AbstractHashMap<E> {
     {
         int indexBucket = getBucketIndex(element);
         //find index
-        int indexInList = bucketArray[indexBucket].indexOf(element);
-        if (indexInList!=-1)//if element exist
+        if (bucketArray[indexBucket]!=null)
         {
-            E removeElement= bucketArray[indexBucket].remove(indexInList);
-            if(bucketArray[indexBucket].isEmpty()) // if bucket Array is empty
+            int indexInList = bucketArray[indexBucket].indexOf(element);
+            if (indexInList!=-1)//if element exist
             {
-                bucketArray[indexBucket]=null; // set bucket Array to null
+                E removeElement= bucketArray[indexBucket].remove(indexInList);
+                if(bucketArray[indexBucket].isEmpty()) // if bucket Array is empty
+                {
+                    bucketArray[indexBucket]=null; // set bucket Array to null
+                }
+                this.setSize(this.getSize()-1);//reduce the size of the Hash Table
+                return removeElement;
             }
-            this.setSize(this.getSize()-1);//reduce the size of the Hash Table
-            return removeElement;
         }
-        else
-        {
-            return null;
-        }
+        return null;
     }
     
     public boolean contains(E element)
     {
+        
         int index= getBucketIndex(element);
-        if (bucketArray[index].contain(element))
+        if ((bucketArray[index]!=null)&&(bucketArray[index].contain(element)))
         {
             return true;
-        }
+        }     
         return false;
     }
     
     public String toString()
     {
-        for(int i=0;i<this.getSize();i++)
+        for(int i=0;i<this.getCapacity();i++)
         {
             if (bucketArray[i]!=null) //if bucketArray element is not null and not empty
             {
-                System.out.println("Bucket "+"["+i+"]:");
+                System.out.print("Bucket "+"["+i+"]: ");
                 bucketArray[i].traverse();
             }
             else
@@ -98,11 +121,27 @@ public class HashTableWithChaining<E> extends AbstractHashMap<E> {
         return "";
     }
     
-    public int getBucketIndex(E element)
+    private int getBucketIndex(E element)
     {
         Person aPerson= (Person) element;
         long key= aPerson.generateHashCode();
         int index= (int) (key%this.getCapacity());
         return index;
+    }
+    
+    private SingleLinkedList<E> getAllElement()
+    {
+        SingleLinkedList<E> listElement= new SingleLinkedList<E>();
+        for(int i=0;i<this.getCapacity();i++)
+        {
+            if (bucketArray[i]!=null) //if bucketArray element is not null and not empty
+            {
+                for(int j=0;j<bucketArray[i].getSize();j++)
+                {
+                    listElement.add(bucketArray[i].get(j).getData()); //add element
+                }
+            }           
+        }
+        return listElement;
     }
 }

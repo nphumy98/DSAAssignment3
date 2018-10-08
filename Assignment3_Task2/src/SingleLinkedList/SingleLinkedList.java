@@ -92,18 +92,19 @@ public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements 
         if (!this.isEmpty())//if list is not empty
         {
             NodeLinkedList<E> currentNode= this.head;
-            System.out.println(currentNode.getData());
+            System.out.print(" "+currentNode.getData()+" ");
             for(int i=1;i<this.getSize();i++)
             {
                 currentNode= currentNode.getNextNode();
                 Person aPerson= (Person) currentNode.getData();
-                System.out.println(aPerson);
+                System.out.print(aPerson+" ");
             }
         }
         else
         {
             System.out.println("The list is empty. It cant be printed");
         }
+        System.out.println();
         
     }
     
