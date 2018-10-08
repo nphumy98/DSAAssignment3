@@ -21,27 +21,38 @@ public class Assignment3_Task2 {
         // TODO code application logic here
 //          Person aPerson= new Person("ab","0212345",12);
 //          System.out.println(aPerson.generateHashCode());
-        SingleLinkedList<String> aList= new SingleLinkedList<String>();
+        SingleLinkedList<Person> aList= new SingleLinkedList<Person>();
         aList.traverse();
         System.out.println(aList.getSize());
         System.out.println(aList.get(0));
-        aList.add("hehe");
-        aList.add("hoho");
-        aList.add("haha");aList.add("hihi");
+        Person person1 =new Person("hehe","021",21);
+        Person person2= new Person("hoho","021",21);
+        Person person3= new Person("haha","021",21);
+        Person person4= new Person("hihi","021",21);
+        Person person5= new Person("huhu","021",21);
+        aList.add(person1);
+        aList.add(person2);
+        aList.add(person3);
+        aList.add(person4);
         
         System.out.println("===");
         aList.traverse();
         System.out.println(aList.getSize());
         System.out.println("===");
-        System.out.println(aList.contain("hehe"));
-        System.out.println(aList.contain("hoho"));
-        System.out.println(aList.contain("haha"));
-        System.out.println(aList.contain("hihi"));
-        System.out.println(aList.contain("huhu"));
-        System.out.println(aList.indexOf("hehe"));
-        System.out.println(aList.indexOf("hoho"));
-        //System.out.println(aList.indexOf("haha"));
-        System.out.println(aList.indexOf("hihi"));
+        System.out.println(aList.contain(person1));
+        System.out.println(aList.contain(person2));
+        System.out.println(aList.contain(person3));
+        System.out.println(aList.contain(person4));
+        System.out.println(aList.contain(person5));
+
+        System.out.println(aList.indexOf(person1));
+        System.out.println(aList.indexOf(person2));
+        System.out.println(aList.indexOf(person3));
+        System.out.println(aList.indexOf(person4));
+        System.out.println(aList.indexOf(person5));
+        
+        aList.replace(3, person5);
+        aList.traverse();
 
         
     }

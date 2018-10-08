@@ -9,12 +9,12 @@ package SingleLinkedList;
  *
  * @author jimmynguyen
  */
-public class Node<E> {
+public class NodeLinkedList<E> {
     private E data;
-    private Node nextNode;
+    private NodeLinkedList nextNode;
     
     //constructor
-    public Node(E data)
+    public NodeLinkedList(E data)
     {
         this.data= data;
         this.nextNode=null;
@@ -28,11 +28,11 @@ public class Node<E> {
         this.data = data;
     }
 
-    public Node getNextNode() {
+    public NodeLinkedList getNextNode() {
         return nextNode;
     }
 
-    public void setNextNode(Node nextNode) {
+    public void setNextNode(NodeLinkedList nextNode) {
         this.nextNode = nextNode;
     }
     

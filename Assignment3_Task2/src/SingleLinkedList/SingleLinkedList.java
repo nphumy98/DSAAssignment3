@@ -5,13 +5,15 @@
  */
 package SingleLinkedList;
 
+import HashMap.Person;
+
 /**
  *
  * @author jimmynguyen
  */
 public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements SingleLinkedListInterface<E> {
-    private Node<E> head;
-    private Node<E> tail;
+    private NodeLinkedList<E> head;
+    private NodeLinkedList<E> tail;
     
     //constructor
     public SingleLinkedList()
@@ -20,7 +22,7 @@ public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements 
         this.setSize(0);//set size to 0
     }
     
-    public SingleLinkedList(Node<E> head)
+    public SingleLinkedList(NodeLinkedList<E> head)
     {
         this.head=head;
         this.tail=this.head;
@@ -28,7 +30,7 @@ public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements 
     }
     @Override
     public void add(E value) {
-        Node<E> newNode= new Node(value);
+        NodeLinkedList<E> newNode= new NodeLinkedList(value);
         if (head==null)
         {
             head= newNode;
@@ -44,7 +46,7 @@ public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements 
     
     @Override
     public E remove(int index) {
-        Node<E> removeNode= null;
+        NodeLinkedList<E> removeNode= null;
         if (index>this.getSize()-1)
         {
             System.out.println("The index exceed the size. cant get this index");
@@ -58,7 +60,7 @@ public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements 
             }
             else
             {
-                Node<E >previousRemoveNode=this.get(index-1);// get the previous node
+                NodeLinkedList<E >previousRemoveNode=this.get(index-1);// get the previous node
                 removeNode= this.get(index);// get the removeNode
                 previousRemoveNode.setNextNode(removeNode.getNextNode()); //link previous node to next node of remove node
             }
@@ -68,7 +70,7 @@ public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements 
     }
     
     @Override//index from 0
-    public Node<E> get(int index) {
+    public NodeLinkedList<E> get(int index) {
         if (index>this.getSize()-1)
         {
             System.out.println("The index exceed the size. cant get this index");
@@ -76,7 +78,7 @@ public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements 
         }
         else
         {
-            Node<E> currentNode= this.head;
+            NodeLinkedList<E> currentNode= this.head;
             for(int i=1;i<=index;i++)
             {
                 currentNode= currentNode.getNextNode();
@@ -89,12 +91,13 @@ public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements 
     public void traverse() {
         if (!this.isEmpty())//if list is not empty
         {
-            Node<E> currentNode= this.head;
+            NodeLinkedList<E> currentNode= this.head;
             System.out.println(currentNode.getData());
             for(int i=1;i<this.getSize();i++)
             {
                 currentNode= currentNode.getNextNode();
-                System.out.println(currentNode.getData());
+                Person aPerson= (Person) currentNode.getData();
+                System.out.println(aPerson);
             }
         }
         else
@@ -105,19 +108,19 @@ public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements 
     }
     
     //getter and setter
-    public Node<E> getHead() {
+    public NodeLinkedList<E> getHead() {
         return head;
     }
 
-    public void setHead(Node<E> head) {
+    public void setHead(NodeLinkedList<E> head) {
         this.head = head;
     }
 
-    public Node<E> getTail() {
+    public NodeLinkedList<E> getTail() {
         return tail;
     }
 
-    public void setTail(Node<E> tail) {
+    public void setTail(NodeLinkedList<E> tail) {
         this.tail = tail;
     }
 
@@ -125,11 +128,13 @@ public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements 
 
     @Override
     public boolean contain(E value) {
+        Person aPerson= (Person) value;
         if (!this.isEmpty())
         {
             for(int i=0;i<this.getSize();i++)
             {
-                if (this.get(i).getData().equals(value)) //if find value;
+                Person linkListPerson = (Person) this.get(i).getData();
+                if (aPerson.compareTo(linkListPerson)) //if 2 Person has the same key
                 {
                     return true;
                 }
@@ -140,20 +145,31 @@ public class SingleLinkedList<E> extends AbstractSingleLinkedList<E> implements 
 
     @Override
     public int indexOf(E value) {
-        Node<E> currentNode= this.head;
-        
-         if (currentNode.getData().equals(value))// if head is the data
+        NodeLinkedList<E> currentNode= this.head;
+        Person aPerson= (Person) value;
+        Person linkListPerson = (Person)currentNode.getData();
+         if (aPerson.compareTo(linkListPerson))// if head is the data
         {
             return 0;
         }
         for(int i=1;i<this.getSize();i++)
         {
             currentNode= currentNode.getNextNode();
-            if (currentNode.getData().equals(value))
+            linkListPerson=(Person)currentNode.getData();
+            if (aPerson.compareTo(linkListPerson))
             {
                 return i;
             }           
         }
         return -1;
+    }
+
+    @Override
+    public void replace(int index, E value) {
+        if((index>=0)&&(index<this.getSize()))
+        {
+            NodeLinkedList<E> oldNode=this.get(index);
+            oldNode.setData(value);
+        }    
     }
 }

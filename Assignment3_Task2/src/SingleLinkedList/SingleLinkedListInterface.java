@@ -12,10 +12,11 @@ package SingleLinkedList;
 public interface SingleLinkedListInterface<E> {
     public void add(E value);
     public E remove(int index);
-    public Node<E> get(int index);
+    public NodeLinkedList<E> get(int index);
     public boolean contain(E value);
     public void traverse();
     public boolean isEmpty();
     public int size();
     public int indexOf(E value);
+    public void replace(int index, E value);
 }

@@ -10,7 +10,7 @@ package HashMap;
  * @author jimmynguyen
  */
 public abstract class AbstractHashMap<E> {
-    private int size;
+    private int size; //this is number of element in HashMap
     private int capacity;//this is the number of bucket
     
     public int size()

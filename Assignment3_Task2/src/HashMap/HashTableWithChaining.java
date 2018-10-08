@@ -5,18 +5,19 @@
  */
 package HashMap;
 
-import SingleLinkedList.SingleLinkedListInterface;
+import SingleLinkedList.NodeLinkedList;
+import SingleLinkedList.SingleLinkedList;
 
 /**
  *
  * @author jimmynguyen
  */
 public class HashTableWithChaining<E> extends AbstractHashMap<E> {
-    private SingleLinkedListInterface<E>[] bucketArray;
+    private SingleLinkedList<E>[] bucketArray;
     
     public HashTableWithChaining()
     {
-        bucketArray= new SingleLinkedListInterface[this.getCapacity()];
+        bucketArray= new SingleLinkedList[this.getCapacity()];
         //set all to null
         for(int i=0;i<bucketArray.length;i++)
         {
@@ -24,9 +25,29 @@ public class HashTableWithChaining<E> extends AbstractHashMap<E> {
         }
     }
     
-    public void add()
+    public void add(E element)
     {
-        
+        int indexBucket = getBucketIndex(element);
+        if(bucketArray[indexBucket]==null) // if bucketArray is null , it mean it has no element
+        {
+            NodeLinkedList<E> root= new NodeLinkedList<E>(element); //set element as the root 
+            bucketArray[indexBucket]= new SingleLinkedList<E>(root); //initialise the list 
+        }
+        else // Collision happen .if list already there , it mean it must have element (if it has no element it will be null as remove method do)
+        {
+            int indexElement= bucketArray[indexBucket].indexOf(element); //check if element has been in the list
+            if(indexElement==-1) // if element has not been in the list
+            {
+                bucketArray[indexBucket].add(element); //add element to list
+            }
+            else //if element already in the list , it mean it has the same key. 
+            {
+                bucketArray[indexBucket].replace(indexElement,element); //we replace value of old element to value of new element
+            }
+            
+        }
+        this.setSize(this.getSize()+1);//increase the size of the Hash Table
+
     }
     
     public E remove(E element)
@@ -36,7 +57,13 @@ public class HashTableWithChaining<E> extends AbstractHashMap<E> {
         int indexInList = bucketArray[indexBucket].indexOf(element);
         if (indexInList!=-1)//if element exist
         {
-            return bucketArray[indexBucket].remove(indexInList);
+            E removeElement= bucketArray[indexBucket].remove(indexInList);
+            if(bucketArray[indexBucket].isEmpty()) // if bucket Array is empty
+            {
+                bucketArray[indexBucket]=null; // set bucket Array to null
+            }
+            this.setSize(this.getSize()-1);//reduce the size of the Hash Table
+            return removeElement;
         }
         else
         {
@@ -54,9 +81,21 @@ public class HashTableWithChaining<E> extends AbstractHashMap<E> {
         return false;
     }
     
-    public void String()
+    public String toString()
     {
-        
+        for(int i=0;i<this.getSize();i++)
+        {
+            if (bucketArray[i]!=null) //if bucketArray element is not null and not empty
+            {
+                System.out.println("Bucket "+"["+i+"]:");
+                bucketArray[i].traverse();
+            }
+            else
+            {
+                System.out.println("Bucket "+"["+i+"]: Null");
+            }
+        }
+        return "";
     }
     
     public int getBucketIndex(E element)
