@@ -15,11 +15,20 @@ public class Person {
     private int age; //attribute represent value
     private long key;
     
+    //constructor
     public Person(String name,String phoneNumber, int age)
     {
         this.name=name;
         this.phoneNumber=phoneNumber;
         this.age=age;
+        this.key= this.generateHashCode();
+    }
+    
+    public Person(String name)
+    {
+        this.name=name;
+        this.phoneNumber="000";
+        this.age=20;
         this.key= this.generateHashCode();
     }
     
@@ -72,27 +81,5 @@ public class Person {
     public boolean compareTo(Person anotherPerson)
     {
         return (this.key==anotherPerson.key);
-    }
-    
-    //replaceValue
-    private void replaceValue(Person anotherPerson)
-    {
-        this.setName(anotherPerson.name);
-        this.setPhoneNumber(anotherPerson.phoneNumber);
-        this.setAge(anotherPerson.age);
-        
-    }
-    
-    //checkValue
-    private boolean checkValue(Person anotherPerson)
-    {
-        if ((this.name==anotherPerson.name)&&(this.phoneNumber==anotherPerson.phoneNumber)&&(this.age==anotherPerson.age))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 }

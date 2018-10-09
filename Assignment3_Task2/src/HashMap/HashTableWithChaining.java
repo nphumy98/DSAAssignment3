@@ -34,6 +34,9 @@ public class HashTableWithChaining<E> extends AbstractHashMap<E> {
         {
             NodeLinkedList<E> root= new NodeLinkedList<E>(element); //set element as the root 
             bucketArray[indexBucket]= new SingleLinkedList<E>(root); //initialise the list 
+            this.setSize(this.getSize()+1);//increase the size of the Hash Table
+             //print out information
+        System.out.println("Person "+element+" has been added. The current size of the map is "+this.getSize()+" with the capacity of "+this.getCapacity());
         }
         else // Collision happen .if list already there , it mean it must have element (if it has no element it will be null as remove method do)
         {
@@ -41,19 +44,23 @@ public class HashTableWithChaining<E> extends AbstractHashMap<E> {
             if(indexElement==-1) // if element has not been in the list
             {
                 bucketArray[indexBucket].add(element); //add element to list
+                this.setSize(this.getSize()+1);//increase the size of the Hash Table
+                 //print out information
+        System.out.println("Person "+element+" has been added. The current size of the map is "+this.getSize()+" with the capacity of "+this.getCapacity());
             }
             else //if element already in the list , it mean it has the same key. 
             {
                 bucketArray[indexBucket].replace(indexElement,element); //we replace value of old element to value of new element
-            }
-            
+            }          
         }
-        this.setSize(this.getSize()+1);//increase the size of the Hash Table
+        
+       
         
         if (1.0d*this.getSize()/this.getCapacity()>=0.75) // check if it exceed load factor
         {
             SingleLinkedList<E> listElement= this.getAllElement(); //save all the elements to a list
-            int newCapacity= this.getCapacity()*2;// double capacity
+            int oldCapacity = this.getCapacity();
+            int newCapacity= oldCapacity*2;// double capacity
             //set the new array and attribute
             bucketArray= new SingleLinkedList[newCapacity];
             this.setCapacity(newCapacity);
@@ -63,11 +70,16 @@ public class HashTableWithChaining<E> extends AbstractHashMap<E> {
             {
                 bucketArray[i]=null;
             }
+            //print information to inform that Hash Table has been extended
+            System.out.println("===========================================================================================================================================================");
+            System.out.println("The load factor has exceed 0.75. Hash Table are exapanded by a factor of 2 . The old capacity is: "+oldCapacity+" The new capacity is: "+this.getCapacity());
+            System.out.println("All elements will be rehashed as follow:");
             //add back all element
             for(int i=0;i<listElement.getSize();i++)
             {
                 this.add(listElement.get(i).getData());
             }
+            System.out.println("===========================================================================================================================================================");
         }
 
     }
@@ -87,6 +99,8 @@ public class HashTableWithChaining<E> extends AbstractHashMap<E> {
                     bucketArray[indexBucket]=null; // set bucket Array to null
                 }
                 this.setSize(this.getSize()-1);//reduce the size of the Hash Table
+                //print out information
+                System.out.println("Person "+removeElement+" has been removed. The current size of the map is "+this.getSize()+" with the capacity of "+this.getCapacity());
                 return removeElement;
             }
         }
